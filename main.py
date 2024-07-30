@@ -22,7 +22,32 @@ if __name__ == '__main__':
     time.sleep(2)
 
     while True:
-        inflate(duration=2)
-        time.sleep(1)
-        # deflate(duration=3)
+        print("0: InflateShort\n1: InflateLong\n2: Deflate")
+
+        cmd = msvcrt.getch()
+
+        if cmd.upper() == b"0":
+            inflate(duration=0.5)
+
+        elif cmd.upper() == b"1":
+            inflate(duration=2.0)
+
+        elif cmd.upper() == b"2":
+            deflate(duration=None)        
+
+        elif cmd == b'\x00':  # Arrow key prefix
+            arrow_key = msvcrt.getch()
+            if arrow_key == b'H':
+                inflate(duration=0.1)
+
+            elif arrow_key == b'P':
+                deflate(duration=0.1)
+                
+            else:
+                print("Invalid command")  
+
+        else:
+            print("Invalid command")    
+
+        time.sleep(0.1)
 
